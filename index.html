@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetaMask Demo</title>
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moralis@0.0.147/dist/moralis.js"></script>
+</head>
+<body>
+    <button onClick="login()">Login with MetaMask</button>
+
+
+    <script>
+        Moralis.initialize("xkKi2jxJFgsWI0kxJXGCkNc7C3511yuPpyEnaQEj")
+        Moralis.serverURL = "https://eel0sncflbur.usemoralis.com:2053/server"
+
+        async function login(){
+            console.log("loggin in with metamask")
+            var user = await Moralis.Web3.authenticate()
+            if(user) {
+                console.log(`user`)
+                console.log(user)
+                user.set("nickname", "httpjunkie")
+                user.save()
+            }
+        }
+    </script>
+    
+</body>
+</html>
